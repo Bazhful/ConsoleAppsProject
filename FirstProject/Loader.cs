@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ConsoleAppsProject.ProjectCalculator;
 using System.Threading;
+using ConsoleAppsProject.ProjectMysql;
 
 namespace ConsoleAppsProject
 {
@@ -24,11 +25,11 @@ namespace ConsoleAppsProject
       Console.WriteLine("--------------------------------------------------------");
       Console.WriteLine("Select the Project! (Type the number of the project)");
       Console.WriteLine("1: Calculator App");
-      Console.WriteLine("2: Project2");
+      Console.WriteLine("2: MySQL ControlPanel");
       Console.WriteLine("3: Project3\n");
       Console.WriteLine("------------------------");
 
-
+/*
       do {
         for (int p = 0; p < 2; p++)
         {
@@ -45,6 +46,7 @@ namespace ConsoleAppsProject
       } while (Console.CapsLock == true);
 
       ClearCurrentConsoleLine();
+      */
       string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
             {
@@ -59,7 +61,7 @@ namespace ConsoleAppsProject
           Calculator();
           break;
         case 2:
-          Project2();
+          MySQL();
           break;
         case 3:
           Project3();
@@ -79,9 +81,10 @@ namespace ConsoleAppsProject
             calc.NewCalculation();
         }
 
-        public void Project2()
+        public void MySQL()
         {
-
+            Mysql mysql = new Mysql();
+            mysql.MainSQL();
 
         }
         public void Project3()

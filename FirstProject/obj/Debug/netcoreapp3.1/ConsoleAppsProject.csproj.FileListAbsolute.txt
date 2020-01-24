@@ -1,11 +1,22 @@
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.exe
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.deps.json
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.runtimeconfig.json
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.runtimeconfig.dev.json
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.dll
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\bin\Debug\netcoreapp3.1\ConsoleAppsProject.pdb
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\obj\Debug\netcoreapp3.1\ConsoleAppsProject.csprojAssemblyReference.cache
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\obj\Debug\netcoreapp3.1\ConsoleAppsProject.AssemblyInfoInputs.cache
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\obj\Debug\netcoreapp3.1\ConsoleAppsProject.AssemblyInfo.cs
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\obj\Debug\netcoreapp3.1\ConsoleAppsProject.dll
-C:\Users\OG Dark\Desktop\C#\FirstProject\FirstProject\obj\Debug\netcoreapp3.1\ConsoleAppsProject.pdb
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.exe
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.deps.json
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.runtimeconfig.json
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.runtimeconfig.dev.json
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.dll
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.pdb
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.csprojAssemblyReference.cache
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.AssemblyInfoInputs.cache
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.AssemblyInfo.cs
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.dll
+C:/Users/OG Dark/Desktop/C#/FirstProject/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.pdb
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.deps.json
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.runtimeconfig.json
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.runtimeconfig.dev.json
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.dll
+/Users/cbashful/Desktop/C#/FirstProject/bin/Debug/netcoreapp3.1/ConsoleAppsProject.pdb
+/Users/cbashful/Desktop/C#/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.csprojAssemblyReference.cache
+/Users/cbashful/Desktop/C#/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.AssemblyInfoInputs.cache
+/Users/cbashful/Desktop/C#/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.AssemblyInfo.cs
+/Users/cbashful/Desktop/C#/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.dll
+/Users/cbashful/Desktop/C#/FirstProject/obj/Debug/netcoreapp3.1/ConsoleAppsProject.pdb

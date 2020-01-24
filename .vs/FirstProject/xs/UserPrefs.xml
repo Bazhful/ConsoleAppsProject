@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{AD49CAED-7216-48D3-9015-5C8768D12432}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FirstProject/ProjectMysql/Mysql.cs">
+    <Files>
+      <File FileName="FirstProject/Loader.cs" Line="85" Column="18" />
+      <File FileName="FirstProject/ProjectCalculator/Calc.cs" Line="1" Column="1" />
+      <File FileName="FirstProject/ProjectMysql/Mysql.cs" Line="2" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="FirstProject" expanded="True">
+            <Node name="ConsoleAppsProject" expanded="True">
+              <Node name="ProjectCalculator" expanded="True" />
+              <Node name="ProjectMysql" expanded="True">
+                <Node name="Mysql.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ConsoleAppsProject PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

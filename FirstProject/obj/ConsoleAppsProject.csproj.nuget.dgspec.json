@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj": {}
+    "/Users/cbashful/Desktop/C#/FirstProject/ConsoleAppsProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj": {
+    "/Users/cbashful/Desktop/C#/FirstProject/ConsoleAppsProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
+        "projectUniqueName": "/Users/cbashful/Desktop/C#/FirstProject/ConsoleAppsProject.csproj",
         "projectName": "ConsoleAppsProject",
-        "projectPath": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
-        "packagesPath": "C:\\Users\\OG Dark\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\obj\\",
+        "projectPath": "/Users/cbashful/Desktop/C#/FirstProject/ConsoleAppsProject.csproj",
+        "packagesPath": "/Users/cbashful/.nuget/packages/",
+        "outputPath": "/Users/cbashful/Desktop/C#/FirstProject/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\OG Dark\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/cbashful/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -56,7 +50,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
         }
       }
     }

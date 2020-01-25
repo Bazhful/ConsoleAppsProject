@@ -21,15 +21,15 @@ namespace ConsoleAppsProject
         {
       
       Console.Clear();
-      Console.WriteLine("Project aApp Launcher!");
+      Console.WriteLine("Project App Launcher!");
       Console.WriteLine("--------------------------------------------------------");
       Console.WriteLine("Select the Project! (Type the number of the project)");
       Console.WriteLine("1: Calculator App");
-      Console.WriteLine("2: MySQL ControlPanel");
+      Console.WriteLine("2: MySQL Controller");
       Console.WriteLine("3: Project3\n");
       Console.WriteLine("------------------------");
 
-/*
+
       do {
         for (int p = 0; p < 2; p++)
         {
@@ -46,7 +46,7 @@ namespace ConsoleAppsProject
       } while (Console.CapsLock == true);
 
       ClearCurrentConsoleLine();
-      */
+      
       string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
             {
@@ -75,23 +75,27 @@ namespace ConsoleAppsProject
         }
 
        
-        public void Calculator()
-        {
-            Calc calc = new Calc();
-            calc.NewCalculation();
-        }
+  
+    public void Calculator()        
+    {        
+      Calc calc = new Calc();        
+      calc.NewCalculation();  
+    }
 
-        public void MySQL()
-        {
-            Mysql mysql = new Mysql();
-            mysql.MainSQL();
+        
+    public void MySQL()        
+    {           
+      Mysql mysql = new Mysql();
+      mysql.MainSQL();
+      
 
-        }
-        public void Project3()
-        {
+    }    
+    public void Project3()     
+    {
 
 
-        }
+       
+    }
 
     }
 

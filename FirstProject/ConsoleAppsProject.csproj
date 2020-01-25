@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ProjectMysql\" />
+    <PackageReference Include="MySql.Data" Version="8.0.19" />
   </ItemGroup>
 </Project>

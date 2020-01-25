@@ -142,6 +142,5 @@ namespace ConsoleAppsProject.ProjectCalculator
             }
             return number;
         }
-
-    }
+  }
 }

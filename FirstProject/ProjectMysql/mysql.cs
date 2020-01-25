@@ -143,25 +143,24 @@ namespace ConsoleAppsProject.ProjectMysql
     public void SQLList()
     {
       string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
-      Console.Clear();
-
-      
-      
+        Console.Clear();   
         MySqlConnection connection = new MySqlConnection(conn);
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("show tables", connection);
         MySqlDataReader reader = cmd.ExecuteReader();
-
-
       int count = 0;
-
-
-        while (reader.Read())
+      while (reader.Read())
         {
-          Console.WriteLine(reader.GetString(1));
+        
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+          
+          Console.WriteLine($"Table[{count}]:{reader.GetValue(i)}");
+          count++;
+        }
          
 
-        }
+      }
      
     }
 

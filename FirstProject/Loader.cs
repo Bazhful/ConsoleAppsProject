@@ -4,6 +4,7 @@ using System.Text;
 using ConsoleAppsProject.ProjectCalculator;
 using System.Threading;
 using ConsoleAppsProject.ProjectMysql;
+using System.Threading.Tasks;
 
 namespace ConsoleAppsProject
 {
@@ -27,7 +28,8 @@ namespace ConsoleAppsProject
       Console.WriteLine("1: Calculator App");
       Console.WriteLine("2: MySQL Controller");
       Console.WriteLine("3: Project3\n");
-      Console.WriteLine("------------------------");
+      SetInterval(() => Console.WriteLine("------------------------"), TimeSpan.FromSeconds(5));
+      SetInterval(() => Console.WriteLine("Hello World"), TimeSpan.FromSeconds(15));
 
 
       do {
@@ -92,12 +94,21 @@ namespace ConsoleAppsProject
     }    
     public void Project3()     
     {
+      int hello = 10;
+    }
+    public static async Task SetInterval(Action action, TimeSpan timeout)
+    {
+      await Task.Delay(timeout).ConfigureAwait(false);
 
+      action();
 
-       
+      //Action is what its going to do and the timeout is how long its supposed to wait before performing that action again.
+     await SetInterval(action, timeout);
     }
 
-    }
+  }
+
+
 
        
 }

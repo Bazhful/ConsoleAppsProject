@@ -148,20 +148,20 @@ namespace ConsoleAppsProject.ProjectMysql
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("show tables", connection);
         MySqlDataReader reader = cmd.ExecuteReader();
-      int count = 0;
+        int count = 0;
+      //This loops for all rows in the database
       while (reader.Read())
-        {
-        
+      {        
+        //This count the amount of columns in the current row.
         for (int i = 0; i < reader.FieldCount; i++)
         {
-          
+          //This Gets the value of the colum in the current row, and displays it in console form.
           Console.WriteLine($"Table[{count}]:{reader.GetValue(i)}");
           count++;
         }
-         
-
+        
       }
-     
+      connection.Close();
     }
 
 

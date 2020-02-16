@@ -3,6 +3,8 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Threading;
+using System.Configuration;
+using ConsoleAppsProject.RandomClasses;
 
 namespace ConsoleAppsProject.ProjectMysql
 {
@@ -24,17 +26,17 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.WriteLine("------------------------------------------------------");
       Console.WriteLine("First of all. We will need some information regarding your MySQL Database!");
       Console.WriteLine("Please Enter your MySQL Hostname ");
-      dbhostname = Console.ReadLine();
+      Console.Write("Select: "); dbhostname = Console.ReadLine();
       Console.WriteLine("\nPlease Enter your MySQL Username");
-      dbusername = Console.ReadLine();
+      Console.Write("Select: "); dbusername = Console.ReadLine();
       Console.WriteLine("\nPlease Enter what Database you want to use!");
-      database = Console.ReadLine();
+      Console.Write("Select: "); database = Console.ReadLine();
       Console.WriteLine("\nPlease Enter your MySQL Password");
-      dbpassword = Console.ReadLine();
+      Console.Write("Select: "); dbpassword = Console.ReadLine();
       Console.WriteLine("\nThis is what you have selected is it correct [Password is hidden]");
       Console.WriteLine($"SERVER = {dbhostname} \nDATABASE = {database} \nUID = {dbusername}");
       Console.WriteLine("Is this Information correct, type 'Yes' if you want to change something type 'No'");
-      string check_correct = Console.ReadLine();
+      Console.Write("Select: ");  string check_correct = Console.ReadLine();
       check_correct = check_correct.ToLower();
 
       if (check_correct == "yes")
@@ -56,11 +58,14 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.WriteLine("2: Search");
       Console.WriteLine("3: Update");
       Console.WriteLine("4: Insert");
+      Console.WriteLine("5: Exit");
       Console.WriteLine("------------------------------------------------------");
-      string input = Console.ReadLine();
+      Console.Write("Select: ");  string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
       {
         Console.WriteLine("Try again, u need to use numbers!");
+        Console.ReadKey();
+        SecondarySQL();
       }
       //This is number 1, for selecting error. 
       int number1 = Int32.Parse(input);
@@ -78,6 +83,9 @@ namespace ConsoleAppsProject.ProjectMysql
           break;
         case 4:
           SQLInsert();
+          break;
+        case 5:
+          Environment.Exit(0);
           break;
         default:
           Console.WriteLine("You did not pick a number between 1-4");
@@ -98,7 +106,7 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.WriteLine("\n5: Everything is Correct, LETS MOVE ON!");
       Console.WriteLine("------------------------------------------------------");
       Console.WriteLine("Which one would u like to change!");
-      string input = Console.ReadLine();
+      Console.Write("Select: ");  string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
       {
         Console.WriteLine("Try again, u need to use numbers!");
@@ -110,22 +118,22 @@ namespace ConsoleAppsProject.ProjectMysql
       {
         case 1:
           Console.WriteLine("Please Enter your MySQL Hostname ");
-          dbhostname = Console.ReadLine();
+          Console.Write("Select: "); dbhostname = Console.ReadLine();
           MainSQLNo();
           break;
         case 2:
           Console.WriteLine("\nPlease Enter your MySQL Username");
-          dbusername = Console.ReadLine();
+          Console.Write("Select: "); dbusername = Console.ReadLine();
           MainSQLNo();
           break;
         case 3:
           Console.WriteLine("\nPlease Enter what Database you want to use!");
-          database = Console.ReadLine();
+          Console.Write("Select: "); database = Console.ReadLine();
           MainSQLNo();
           break;
         case 4:
           Console.WriteLine("\nPlease Enter your MySQL Password");
-          dbpassword = Console.ReadLine();
+          Console.Write("Select: "); dbpassword = Console.ReadLine();
           MainSQLNo();
           break;
         case 5:
@@ -159,18 +167,69 @@ namespace ConsoleAppsProject.ProjectMysql
           Console.WriteLine($"Table[{count}]:{reader.GetValue(i)}");
           count++;
         }
-        
       }
       connection.Close();
+      Console.WriteLine("Press any key to continue!");
+      Console.ReadKey();
+      SecondarySQL();
     }
-
-
     public void SQLSearch()
     {
       string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
       Console.Clear();
-    }
+      Console.WriteLine("Please enter what column u want to search, or use '*' for all columns, if u have multiple columns use , after every column like this -> (id, movie)");
+      Console.Write("Select: "); string row = Console.ReadLine();
+      Console.WriteLine("Please Enter the Table Name that you want to search in, or type '*' if u wanna search in all tables.");
+      Console.Write("Select: "); string table = Console.ReadLine();
+      Console.WriteLine("PLease Enter What you want to search for!");
+      Console.Write("Select: "); string search = Console.ReadLine();
+      MySqlConnection connection = new MySqlConnection(conn);
+      connection.Open();
+      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}", connection);
+      MySqlDataReader reader = cmd.ExecuteReader();
+      int count = 0;
+      //This loops for all rows in the database
+      Console.Clear();
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+          Console.Write($"{reader.GetName(i), -15}");
+          
+        }
+      Console.WriteLine("\n---------------------");
+      while (reader.Read())
+      {
+        //This count the amount of columns in the current row.
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+          //This Gets the value of the colum in the current row, and displays it in console form.
+          var x = reader.GetString(i);
 
+          string lol = $"{x}".LimitLength(5);
+          Console.WriteLine(lol, -15);
+
+          /*if (x.Length <= 5) 
+          {
+            Console.WriteLine(x);
+          }
+          else 
+          {
+            Console.WriteLine(x.Substring(0, 5));
+          }  This is a way to convert the amount of characters in a string */
+
+
+
+         //Console.WriteLine($"{reader.(i)}");
+         // Console.Write($"{reader.GetValue(i), -15}");
+          count++;
+        }
+        Console.WriteLine("\n---------------------");
+      }
+      connection.Close();
+      Console.WriteLine("Press any key to continue!");
+      Console.ReadKey();
+      SecondarySQL();
+    }
+       
     public void SQLUpdate()
     {
       string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
@@ -182,5 +241,5 @@ namespace ConsoleAppsProject.ProjectMysql
       string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
       Console.Clear();
     }
-  }
+   } 
 }

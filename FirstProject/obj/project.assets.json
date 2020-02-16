@@ -5781,11 +5781,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
+      "projectUniqueName": "C:\\Users\\OG Dark\\Dropbox\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
       "projectName": "ConsoleAppsProject",
-      "projectPath": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
+      "projectPath": "C:\\Users\\OG Dark\\Dropbox\\C#\\FirstProject\\FirstProject\\ConsoleAppsProject.csproj",
       "packagesPath": "C:\\Users\\OG Dark\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\OG Dark\\Desktop\\C#\\FirstProject\\FirstProject\\obj\\",
+      "outputPath": "C:\\Users\\OG Dark\\Dropbox\\C#\\FirstProject\\FirstProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

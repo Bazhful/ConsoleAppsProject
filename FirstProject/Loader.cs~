@@ -48,8 +48,8 @@ namespace ConsoleAppsProject
       } while (Console.CapsLock == true);
 
       ClearCurrentConsoleLine();
-
-      Console.Write("Select: "); string input = Console.ReadLine();
+      
+      string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
             {
              Console.WriteLine("Try again, u need to use numbers");

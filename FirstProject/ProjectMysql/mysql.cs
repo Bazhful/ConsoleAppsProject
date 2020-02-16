@@ -15,7 +15,6 @@ namespace ConsoleAppsProject.ProjectMysql
     private string database = "";
     private string dbusername = "";
     private string dbpassword = "";
-   
 
     public void MainSQL() 
     {     
@@ -55,10 +54,11 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.WriteLine("This is the actual controlpanel, here you will be able to edit your MySQL database. Everything from searching to adding to modifying.");
       Console.WriteLine("Please Select one of the Options Below!");
       Console.WriteLine("1: List All Tables");
-      Console.WriteLine("2: Search");
+      Console.WriteLine("2: List Table Content");
       Console.WriteLine("3: Update");
-      Console.WriteLine("4: Insert");
-      Console.WriteLine("5: Exit");
+      Console.WriteLine("4: Exit");
+      Console.WriteLine("5: Insert");
+      Console.WriteLine("6: Exit");
       Console.WriteLine("------------------------------------------------------");
       Console.Write("Select: ");  string input = Console.ReadLine();
       while (int.TryParse(input, out int n) == false)
@@ -76,15 +76,18 @@ namespace ConsoleAppsProject.ProjectMysql
           SQLList();
           break;
         case 2:
-          SQLSearch();
+            SQLTableList();
           break;
         case 3:
           SQLUpdate();
           break;
         case 4:
-          SQLInsert();
+          SQLUpdate();
           break;
         case 5:
+          SQLInsert();
+          break;
+        case 6:
           Environment.Exit(0);
           break;
         default:
@@ -110,6 +113,7 @@ namespace ConsoleAppsProject.ProjectMysql
       while (int.TryParse(input, out int n) == false)
       {
         Console.WriteLine("Try again, u need to use numbers!");
+        MainSQLNo();
       }
       //This is number 1, for selecting error. 
       int number1 = Int32.Parse(input);
@@ -150,11 +154,8 @@ namespace ConsoleAppsProject.ProjectMysql
 
     public void SQLList()
     {
-      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
         Console.Clear();   
-        MySqlConnection connection = new MySqlConnection(conn);
-        connection.Open();
-        MySqlCommand cmd = new MySqlCommand("show tables", connection);
+        MySqlCommand cmd = new MySqlCommand("show tables", ConnectionCmd());
         MySqlDataReader reader = cmd.ExecuteReader();
         int count = 0;
       //This loops for all rows in the database
@@ -168,14 +169,13 @@ namespace ConsoleAppsProject.ProjectMysql
           count++;
         }
       }
-      connection.Close();
+      ConnectionCmd().Close();
       Console.WriteLine("Press any key to continue!");
       Console.ReadKey();
       SecondarySQL();
     }
-    public void SQLSearch()
+    public void SQLTableList()
     {
-      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
       Console.Clear();
       Console.WriteLine("Please enter what column u want to search, or use '*' for all columns, if u have multiple columns use , after every column like this -> (id, movie)");
       Console.Write("Select: "); string row = Console.ReadLine();
@@ -183,9 +183,8 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.Write("Select: "); string table = Console.ReadLine();
       Console.WriteLine("PLease Enter What you want to search for!");
       Console.Write("Select: "); string search = Console.ReadLine();
-      MySqlConnection connection = new MySqlConnection(conn);
-      connection.Open();
-      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}", connection);
+      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}",ConnectionCmd());
+ 
       MySqlDataReader reader = cmd.ExecuteReader();
       int count = 0;
       //This loops for all rows in the database
@@ -203,10 +202,8 @@ namespace ConsoleAppsProject.ProjectMysql
         {
           //This Gets the value of the colum in the current row, and displays it in console form.
           var x = reader.GetString(i);
-
-          string lol = $"{x}".LimitLength(5);
-          Console.WriteLine(lol, -15);
-
+          string lol = $"{x}".LimitLength(15);
+          Console.Write($"{lol, -15}");
           /*if (x.Length <= 5) 
           {
             Console.WriteLine(x);
@@ -215,16 +212,13 @@ namespace ConsoleAppsProject.ProjectMysql
           {
             Console.WriteLine(x.Substring(0, 5));
           }  This is a way to convert the amount of characters in a string */
-
-
-
          //Console.WriteLine($"{reader.(i)}");
          // Console.Write($"{reader.GetValue(i), -15}");
           count++;
         }
         Console.WriteLine("\n---------------------");
       }
-      connection.Close();
+      ConnectionCmd().Close();
       Console.WriteLine("Press any key to continue!");
       Console.ReadKey();
       SecondarySQL();
@@ -232,14 +226,30 @@ namespace ConsoleAppsProject.ProjectMysql
        
     public void SQLUpdate()
     {
-      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
       Console.Clear();
+
     }
 
     public void SQLInsert()
     {
-      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
       Console.Clear();
+    }
+    ///<summary>Opens Connection to MySQL</summary>
+    public MySqlConnection ConnectionCmd()
+    {
+      ///<summary>Opens Connection to MySQL</summary>
+      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
+      MySqlConnection connection = new MySqlConnection(conn);
+      try
+      {
+        connection.Open();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.Message);
+      }
+     
+      return connection;
     }
    } 
 }

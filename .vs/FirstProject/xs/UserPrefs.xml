@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{AD49CAED-7216-48D3-9015-5C8768D12432}|Default">
+<Properties StartupConfiguration="{AD49CAED-7216-48D3-9015-5C8768D12432}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="FirstProject/ProjectMysql/Mysql.cs">
     <Files>
       <File FileName="FirstProject/Loader.cs" Line="85" Column="18" />
@@ -12,7 +12,7 @@
             <Node name="ConsoleAppsProject" expanded="True">
               <Node name="ProjectCalculator" expanded="True" />
               <Node name="ProjectMysql" expanded="True">
-                <Node name="Mysql.cs" selected="True" />
+                <Node name="Mysql123123.cs" selected="True" />
               </Node>
             </Node>
           </Node>

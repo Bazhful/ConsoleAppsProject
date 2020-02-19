@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ConsoleAppsProject.ProjectMysql;
 
 namespace ConsoleAppsProject.RandomClasses
 {
@@ -10,6 +11,7 @@ namespace ConsoleAppsProject.RandomClasses
         public static string LimitLength(this string source, int maxlength)
     {
       if (source.Length <= maxlength)
+        //This is git test
       {
         return source;
       }

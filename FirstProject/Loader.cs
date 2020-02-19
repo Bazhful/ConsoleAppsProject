@@ -5,6 +5,7 @@ using ConsoleAppsProject.ProjectCalculator;
 using System.Threading;
 using ConsoleAppsProject.ProjectMysql;
 using System.Threading.Tasks;
+using ConsoleAppsProject.RandomClasses;
 
 namespace ConsoleAppsProject
 {
@@ -60,10 +61,12 @@ namespace ConsoleAppsProject
             switch (app)
             {
         case 1:
-          Calculator();
+          Calc calc = new Calc();        
+          calc.NewCalculation();
           break;
         case 2:
-          MySQL();
+          Mysql mysql = new Mysql();
+          mysql.MainSQL();
           break;
         case 3:
           Project3();
@@ -73,23 +76,11 @@ namespace ConsoleAppsProject
           break;
             }
         }
-    public void Calculator()        
-    {        
-      Calc calc = new Calc();        
-      calc.NewCalculation();  
-    }
-
-        
-    public void MySQL()        
-    {           
-      Mysql mysql = new Mysql();
-      mysql.MainSQL();
-      
-
-    }    
+   
     public void Project3()     
     {
-     
+      Display display = new Display();
+      display.SendDetails();
     }
     public static async Task SetInterval(Action action, TimeSpan timeout)
     {

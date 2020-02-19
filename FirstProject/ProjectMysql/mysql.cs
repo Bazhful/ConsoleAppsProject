@@ -11,10 +11,11 @@ namespace ConsoleAppsProject.ProjectMysql
   public class Mysql
   {
 
-    private string dbhostname = "";
-    private string database = "";
-    private string dbusername = "";
-    private string dbpassword = "";
+    protected string dbhostname = "";
+    protected string database = "";
+    protected string dbusername = "";
+    protected string dbpassword = "";
+    private SQLConnection connection = new SQLConnection();
 
     public void MainSQL() 
     {     
@@ -54,7 +55,7 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.WriteLine("This is the actual controlpanel, here you will be able to edit your MySQL database. Everything from searching to adding to modifying.");
       Console.WriteLine("Please Select one of the Options Below!");
       Console.WriteLine("1: List All Tables");
-      Console.WriteLine("2: List Table Content");
+      Console.WriteLine("2: List/Search Table Content");
       Console.WriteLine("3: Update");
       Console.WriteLine("4: Exit");
       Console.WriteLine("5: Insert");
@@ -79,7 +80,7 @@ namespace ConsoleAppsProject.ProjectMysql
             SQLTableList();
           break;
         case 3:
-          SQLUpdate();
+          SQLTableList();
           break;
         case 4:
           SQLUpdate();
@@ -151,11 +152,11 @@ namespace ConsoleAppsProject.ProjectMysql
       }
      
     }
-
+ 
     public void SQLList()
     {
         Console.Clear();   
-        MySqlCommand cmd = new MySqlCommand("show tables", ConnectionCmd());
+        MySqlCommand cmd = new MySqlCommand("show tables", connection.ConnectionOpen(true));
         MySqlDataReader reader = cmd.ExecuteReader();
         int count = 0;
       //This loops for all rows in the database
@@ -169,7 +170,7 @@ namespace ConsoleAppsProject.ProjectMysql
           count++;
         }
       }
-      ConnectionCmd().Close();
+      connection.ConnectionOpen(false);
       Console.WriteLine("Press any key to continue!");
       Console.ReadKey();
       SecondarySQL();
@@ -179,51 +180,23 @@ namespace ConsoleAppsProject.ProjectMysql
       Console.Clear();
       Console.WriteLine("Please enter what column u want to search, or use '*' for all columns, if u have multiple columns use , after every column like this -> (id, movie)");
       Console.Write("Select: "); string row = Console.ReadLine();
+      Console.WriteLine("-------------------------");
       Console.WriteLine("Please Enter the Table Name that you want to search in, or type '*' if u wanna search in all tables.");
       Console.Write("Select: "); string table = Console.ReadLine();
-      Console.WriteLine("PLease Enter What you want to search for!");
+      Console.WriteLine("-------------------------");
+      Console.WriteLine("Please Enter What you want to search for!");
+      Console.WriteLine("Leave empty if u dont want to search for anything specific and you just wanna list all  the content from your table and column that you have selected");
+      Console.WriteLine("Exampel. If u wanna find all occurences where idUser = 2, type 'idUser=2'");
       Console.Write("Select: "); string search = Console.ReadLine();
-      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}",ConnectionCmd());
- 
-      MySqlDataReader reader = cmd.ExecuteReader();
-      int count = 0;
-      //This loops for all rows in the database
-      Console.Clear();
-        for (int i = 0; i < reader.FieldCount; i++)
-        {
-          Console.Write($"{reader.GetName(i), -15}");
-          
-        }
-      Console.WriteLine("\n---------------------");
-      while (reader.Read())
+      if (String.IsNullOrEmpty(search))
       {
-        //This count the amount of columns in the current row.
-        for (int i = 0; i < reader.FieldCount; i++)
-        {
-          //This Gets the value of the colum in the current row, and displays it in console form.
-          var x = reader.GetString(i);
-          string lol = $"{x}".LimitLength(15);
-          Console.Write($"{lol, -15}");
-          /*if (x.Length <= 5) 
-          {
-            Console.WriteLine(x);
-          }
-          else 
-          {
-            Console.WriteLine(x.Substring(0, 5));
-          }  This is a way to convert the amount of characters in a string */
-         //Console.WriteLine($"{reader.(i)}");
-         // Console.Write($"{reader.GetValue(i), -15}");
-          count++;
-        }
-        Console.WriteLine("\n---------------------");
+        CommandList(row, table);
       }
-      ConnectionCmd().Close();
-      Console.WriteLine("Press any key to continue!");
-      Console.ReadKey();
-      SecondarySQL();
+      if (!String.IsNullOrEmpty(search))
+      {
+        CommandSearch(row, table, search);
+      }
     }
-       
     public void SQLUpdate()
     {
       Console.Clear();
@@ -234,22 +207,102 @@ namespace ConsoleAppsProject.ProjectMysql
     {
       Console.Clear();
     }
-    ///<summary>Opens Connection to MySQL</summary>
-    public MySqlConnection ConnectionCmd()
+    ///<summary>Opens/Closes Connection to MySQL, Insert bool value with either false to close or true to open the MYSQL connection </summary>
+
+/// <summary>
+/// Method, for running MYSQL command with WHERE, "SELECT row FROM table WHERE x=x"
+/// </summary>
+/// <param name="row"></param>
+/// <param name="table"></param>
+/// <param name="search"></param>
+/// <returns></returns>
+    public MySqlCommand CommandSearch(string row, string table, string search)
     {
-      ///<summary>Opens Connection to MySQL</summary>
-      string conn = ($"SERVER={dbhostname};DATABASE={database};UID={dbusername};PASSWORD={dbpassword};");
-      MySqlConnection connection = new MySqlConnection(conn);
-      try
+      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table} WHERE {search}", connection.ConnectionOpen(true)); //Make this into a function
+
+      MySqlDataReader reader = cmd.ExecuteReader();
+      //This loops for all rows in the database
+      Console.Clear();
+      for (int i = 0; i < reader.FieldCount; i++)
       {
-        connection.Open();
+        Console.Write($"{reader.GetName(i),-15}");
       }
-      catch (Exception e)
+      Console.WriteLine("\n---------------------");
+      while (reader.Read())
       {
-        Console.WriteLine(e.Message);
+        //This count the amount of columns in the current row.
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+          //This Gets the value of the colum in the current row, and displays it in console form.
+          var x = reader.GetString(i);
+          //var p = 15.Adddition(5); Trying some stupid stuff out.
+          string lol = $"{x}".LimitLength(15);
+          Console.Write($"{lol,-15}");
+          /*if (x.Length <= 5) 
+          {
+            Console.WriteLine(x);
+          }
+          else 
+          {
+            Console.WriteLine(x.Substring(0, 5));
+          }  This is a way to convert the amount of characters in a string */
+          //Console.WriteLine($"{reader.(i)}");
+          // Console.Write($"{reader.GetValue(i), -15}");
+        }
+        Console.WriteLine("\n---------------------");
       }
-     
-      return connection;
+      connection.ConnectionOpen(true);
+      Console.WriteLine("Press any key to continue!");
+      Console.ReadKey();
+      SecondarySQL();
+      return cmd;
     }
-   } 
-}
+/// <summary>
+/// Method, for running MYSQL Command that only takes in row and table from SELECT  "SELECT row FROM TABLE"
+/// </summary>
+/// <param name="row"></param>
+/// <param name="table"></param>
+/// <returns></returns>
+    public MySqlCommand CommandList(string row, string table)
+    {
+      MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}", connection.ConnectionOpen(true)); //Make this into a function
+      MySqlDataReader reader = cmd.ExecuteReader();
+      //This loops for all rows in the database
+      Console.Clear();
+      for (int i = 0; i < reader.FieldCount; i++)
+      {
+        Console.Write($"{reader.GetName(i),-15}");
+
+      }
+      Console.WriteLine("\n---------------------");
+      while (reader.Read())
+      {
+        //This count the amount of columns in the current row.
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+          //This Gets the value of the colum in the current row, and displays it in console form.
+          var x = reader.GetString(i);
+          string lol = $"{x}".LimitLength(15);
+          Console.Write($"{lol,-15}");
+          /*if (x.Length <= 5) 
+          {
+            Console.WriteLine(x);
+          }
+          else 
+          {
+            Console.WriteLine(x.Substring(0, 5));
+          }  This is a way to convert the amount of characters in a string */
+          //Console.WriteLine($"{reader.(i)}");
+          // Console.Write($"{reader.GetValue(i), -15}");
+        }
+        Console.WriteLine("\n---------------------");
+      }
+      connection.ConnectionOpen(true);
+      Console.WriteLine("Press any key to continue!");
+      Console.ReadKey();
+      SecondarySQL();
+      return cmd;
+    }
+  }
+} 
+

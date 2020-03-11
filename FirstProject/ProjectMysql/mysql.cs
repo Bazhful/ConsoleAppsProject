@@ -11,11 +11,10 @@ namespace ConsoleAppsProject.ProjectMysql
   public class Mysql
   {
 
-    protected string dbhostname = "";
-    protected string database = "";
-    protected string dbusername = "";
-    protected string dbpassword = "";
-    private SQLConnection connection = new SQLConnection();
+    protected string dbhostname;
+    protected string database;
+    protected string dbusername;
+    protected string dbpassword;
 
     public void MainSQL() 
     {     
@@ -101,6 +100,7 @@ namespace ConsoleAppsProject.ProjectMysql
 
     public void MainSQLNo()
     {
+      
       Console.Clear();
       Console.WriteLine("Which one wasnt correct?");
       Console.WriteLine($"1: Hostname, The current hostname is = {dbhostname}");
@@ -155,7 +155,8 @@ namespace ConsoleAppsProject.ProjectMysql
  
     public void SQLList()
     {
-        Console.Clear();   
+        Console.Clear();
+        SQLConnection connection = new SQLConnection();
         MySqlCommand cmd = new MySqlCommand("show tables", connection.ConnectionOpen(true));
         MySqlDataReader reader = cmd.ExecuteReader();
         int count = 0;
@@ -178,6 +179,7 @@ namespace ConsoleAppsProject.ProjectMysql
     public void SQLTableList()
     {
       Console.Clear();
+      SQLConnection connection = new SQLConnection();
       Console.WriteLine("Please enter what column u want to search, or use '*' for all columns, if u have multiple columns use , after every column like this -> (id, movie)");
       Console.Write("Select: "); string row = Console.ReadLine();
       Console.WriteLine("-------------------------");
@@ -199,12 +201,14 @@ namespace ConsoleAppsProject.ProjectMysql
     }
     public void SQLUpdate()
     {
+      SQLConnection connection = new SQLConnection();
       Console.Clear();
 
     }
 
     public void SQLInsert()
     {
+      SQLConnection connection = new SQLConnection();
       Console.Clear();
     }
     ///<summary>Opens/Closes Connection to MySQL, Insert bool value with either false to close or true to open the MYSQL connection </summary>
@@ -218,6 +222,7 @@ namespace ConsoleAppsProject.ProjectMysql
 /// <returns></returns>
     public MySqlCommand CommandSearch(string row, string table, string search)
     {
+      SQLConnection connection = new SQLConnection();
       MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table} WHERE {search}", connection.ConnectionOpen(true)); //Make this into a function
 
       MySqlDataReader reader = cmd.ExecuteReader();
@@ -265,6 +270,7 @@ namespace ConsoleAppsProject.ProjectMysql
 /// <returns></returns>
     public MySqlCommand CommandList(string row, string table)
     {
+      SQLConnection connection = new SQLConnection();
       MySqlCommand cmd = new MySqlCommand($"SELECT {row} FROM {table}", connection.ConnectionOpen(true)); //Make this into a function
       MySqlDataReader reader = cmd.ExecuteReader();
       //This loops for all rows in the database
